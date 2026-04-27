@@ -54,4 +54,4 @@ export const analyzeVoiceCommand = async (data: { command: string }): Promise<Vo
       console.error("Voice command AI analysis failed", error);
       return { type: "unknown", message: "AI analizi başarısız oldu; klasik komut algılama kullanılacak." };
     }
-  });
+};
