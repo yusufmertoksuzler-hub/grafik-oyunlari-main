@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { analyzeVoiceCommand, type VoiceCommandAction } from "@/lib/voice-command.functions";
 
@@ -315,7 +314,6 @@ function Index() {
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const shouldKeepListeningRef = useRef(false);
   const handleTranscriptRef = useRef<(text: string) => void>(() => undefined);
-  const analyzeVoiceCommandFn = useServerFn(analyzeVoiceCommand);
   const [selectedFunction, setSelectedFunction] = useState<FunctionKey>("quadratic");
   const [customExpression, setCustomExpression] = useState("x*x");
   const [transform, setTransform] = useState<Transform>(initialTransform);
@@ -402,11 +400,10 @@ function Index() {
 
   const handleVoiceResult = useCallback(
     async (command: string) => {
-      setHeardCommand(`Algılanan komut: ${command} • AI analiz ediyor...`);
-      const action = await analyzeVoiceCommandFn({ data: { command } });
+      const action = await analyzeVoiceCommand({ command });
       applyAiAction(action, command);
     },
-    [analyzeVoiceCommandFn, applyAiAction],
+    [applyAiAction],
   );
 
   useEffect(() => {

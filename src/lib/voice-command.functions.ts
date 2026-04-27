@@ -1,4 +1,3 @@
-import { createServerFn } from "@tanstack/react-start";
 
 export type VoiceCommandAction =
   | { type: "setTransform"; key: "a" | "b" | "h" | "k"; value: number; message: string }
@@ -7,14 +6,11 @@ export type VoiceCommandAction =
   | { type: "zoom"; direction: "in" | "out"; message: string }
   | { type: "unknown"; message: string };
 
-export const analyzeVoiceCommand = createServerFn({ method: "POST" })
-  .inputValidator((input: { command: string }) => {
-    const command = typeof input?.command === "string" ? input.command.trim().slice(0, 240) : "";
+export const analyzeVoiceCommand = async (data: { command: string }): Promise<VoiceCommandAction> => {
+    const command = typeof data?.command === "string" ? data.command.trim().slice(0, 240) : "";
     if (!command) throw new Error("Komut boş olamaz.");
-    return { command };
-  })
-  .handler(async ({ data }): Promise<VoiceCommandAction> => {
-    const apiKey = process.env.LOVABLE_API_KEY;
+
+    const apiKey = import.meta.env.VITE_LOVABLE_API_KEY;
     if (!apiKey) return { type: "unknown", message: "AI bağlantısı hazır değil; klasik komut algılama kullanılacak." };
 
     try {
