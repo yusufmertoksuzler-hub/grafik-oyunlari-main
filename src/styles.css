@@ -1,0 +1,126 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-voice: var(--voice);
+  --color-voice-foreground: var(--voice-foreground);
+  --color-learning: var(--learning);
+  --color-learning-foreground: var(--learning-foreground);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-panel: var(--shadow-panel);
+}
+
+:root {
+  --radius: 0.65rem;
+  --background: oklch(0.982 0.014 238);
+  --foreground: oklch(0.225 0.045 252);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.225 0.045 252);
+  --primary: oklch(0.57 0.205 257);
+  --primary-foreground: oklch(0.99 0.004 240);
+  --secondary: oklch(0.94 0.035 232);
+  --secondary-foreground: oklch(0.28 0.06 250);
+  --muted: oklch(0.94 0.02 235);
+  --muted-foreground: oklch(0.48 0.045 252);
+  --accent: oklch(0.74 0.16 67);
+  --accent-foreground: oklch(0.23 0.045 55);
+  --destructive: oklch(0.62 0.22 28);
+  --destructive-foreground: oklch(0.99 0.004 240);
+  --border: oklch(0.88 0.032 240);
+  --input: oklch(0.88 0.032 240);
+  --ring: oklch(0.62 0.18 257);
+  --voice: oklch(0.68 0.18 150);
+  --voice-foreground: oklch(0.16 0.035 150);
+  --learning: oklch(0.95 0.052 150);
+  --learning-foreground: oklch(0.24 0.06 155);
+  --shadow-soft: 0 12px 28px -18px color-mix(in oklab, var(--primary) 35%, transparent);
+  --shadow-panel: 0 18px 50px -28px color-mix(in oklab, var(--foreground) 28%, transparent);
+}
+
+.dark {
+  --background: oklch(0.18 0.035 252);
+  --foreground: oklch(0.96 0.01 240);
+  --card: oklch(0.23 0.04 252);
+  --card-foreground: oklch(0.96 0.01 240);
+  --primary: oklch(0.69 0.16 252);
+  --primary-foreground: oklch(0.15 0.035 252);
+  --secondary: oklch(0.3 0.045 252);
+  --secondary-foreground: oklch(0.93 0.018 235);
+  --muted: oklch(0.3 0.04 252);
+  --muted-foreground: oklch(0.75 0.025 240);
+  --accent: oklch(0.76 0.14 70);
+  --accent-foreground: oklch(0.2 0.04 50);
+  --destructive: oklch(0.68 0.19 28);
+  --destructive-foreground: oklch(0.98 0.005 240);
+  --border: oklch(0.36 0.045 252);
+  --input: oklch(0.36 0.045 252);
+  --ring: oklch(0.7 0.14 252);
+  --voice: oklch(0.71 0.15 150);
+  --voice-foreground: oklch(0.16 0.035 150);
+  --learning: oklch(0.28 0.06 155);
+  --learning-foreground: oklch(0.94 0.035 150);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  button:focus-visible,
+  input:focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
